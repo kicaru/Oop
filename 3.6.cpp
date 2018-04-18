@@ -95,9 +95,12 @@ class MyRect {
 	void reset();
 	};
 	void MyRect::show(){
+		cout<<"-----Show-----"<<endl;
 		for(int i=0;i<row;i++){
 				for(int j=0;j<col;j++){
 					cout<<a[i][j].getWidth()<<endl;
+					cout<<a[i][j].getHeight()<<endl;
+					cout<<"_______________________"<<endl;
 				}
 		}
 	}
