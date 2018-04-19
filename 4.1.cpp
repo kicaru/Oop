@@ -14,6 +14,11 @@ class Point {
 			y=Y;
 			strcpy(name,n);
 		}
+		void setL(int X,int Y){
+			x=X;
+			y=Y;
+			strcpy(name,"Noname");
+		}
 		void setX(int X){
 			x = X;
 			}
@@ -34,17 +39,20 @@ class Point {
 		}
 		Point(){
 			num++;
+			setname("Noname");
 			cout<<"num : "<<num<<endl;
 		}
 		Point(int x){
 			num++;
 			setX(x);
+			setname("Noname");
 			cout<<"num : "<<num<<endl;
 		}
 		Point(int x,int y){
 			num++;
 			setX(x);
 			setY(y);
+			setname("Noname");
 			cout<<"num : "<<num<<endl;
 		}
 		Point(int x,int y,char *n){
@@ -54,6 +62,7 @@ class Point {
 			setname(n);
 			cout<<"num : "<<num<<endl;
 		}
+		
 		~Point(){
 			num--;
 			cout<<"num : "<<num<<endl;
@@ -65,35 +74,42 @@ class Point {
 	
 		
 		void show(void);
-		void dot(Point&);
-		
+		int &dot(Point&);
+		Point &midpoint(Point& ,Point& );
 		
 }; 
 		int Point::num;
-		void  Point::show(){
-	cout<<"Name="<<name<<endl;
-	cout<<"X="<<x<<endl;
-	cout<<"Y="<<y<<endl;
-	cout<<endl;
+		
+	void Point::show(){
+		cout<<"Name="<<name<<endl;
+		cout<<"X="<<x<<endl;
+		cout<<"Y="<<y<<endl;
+		cout<<endl;
 }
-	void Point::dot(Point& n){
-		int total;
-		total = (x*n.x)+(y*n.y);
-		cout<<"total dot : "<<total<<endl;
+	int &Point::dot(Point& n){
+		int totle;
+		totle = (x*n.x)+(y*n.y);
+		return totle;
 	}
-	void midpoint(Point& n,Point& m){
-		int N,M;
-		N=(n.getX()+m.getX())/2;
-		M=(n.getY()+m.getY())/2;
-		cout<<"midpoint : "<<N<<","<<M<<endl;
+	
+	Point& Point::midpoint(Point& n,Point& m){
+		
+		x = (n.x+m.x)/2;
+		y = (n.y+m.y)/2;
+		return *this;
 	}
 
 int main(){
+	Point d;
 	Point a(30,17,"bank2");
 	Point b(10,20,"bank");
 	a.show();
 	b.show();
-	a.dot(b);
-	midpoint(a,b);
+	
+	cout<<"dot :"<<a.dot(b)<<endl;;
+	
+	d.midpoint(a,b).show();
+
+	
 	return 0;
 }	
